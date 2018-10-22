@@ -79,8 +79,8 @@ for (var pathname in pages) {
   };
   if (pathname in devWebpackConfig.entry) {
     conf.chunks = ['manifest', 'vendor', pathname];
-    conf.hash = true;
   }
+  console.log(conf)
   // 需要生成几个html文件，就配置几个HtmlWebpackPlugin对象
   devWebpackConfig.plugins.push(new HtmlWebpackPlugin(conf));
 }

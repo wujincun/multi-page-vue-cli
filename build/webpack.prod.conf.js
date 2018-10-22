@@ -61,20 +61,20 @@ const webpackConfig = merge(baseWebpackConfig, {
     // generate dist index.html with correct asset hash for caching.
     // you can customize output by editing /index.html
     // see https://github.com/ampedandwired/html-webpack-plugin
-    new HtmlWebpackPlugin({
-      filename: config.build.index,
-      template: 'index.html',
-      inject: true,
-      minify: {
-        removeComments: true,
-        collapseWhitespace: true,
-        removeAttributeQuotes: true
-        // more options:
-        // https://github.com/kangax/html-minifier#options-quick-reference
-      },
-      // necessary to consistently work with multiple chunks via CommonsChunkPlugin
-      chunksSortMode: 'dependency'
-    }),
+    // new HtmlWebpackPlugin({
+    //   filename: config.build.index,
+    //   template: 'index.html',
+    //   inject: true,
+    //   minify: {
+    //     removeComments: true,
+    //     collapseWhitespace: true,
+    //     removeAttributeQuotes: true
+    //     // more options:
+    //     // https://github.com/kangax/html-minifier#options-quick-reference
+    //   },
+    //   // necessary to consistently work with multiple chunks via CommonsChunkPlugin
+    //   chunksSortMode: 'dependency'
+    // }),
     // keep module.id stable when vendor modules does not change
     new webpack.HashedModuleIdsPlugin(),
     // enable scope hoisting
@@ -149,12 +149,11 @@ for (var pathname in pages) {
     template: pages[pathname], // 模板路径
     inject: true              // js插入位置
   };
-  if (pathname in module.exports.entry) {
+  if (pathname in webpackConfig.entry) {
     conf.chunks = ['manifest', 'vendor', pathname];
-    conf.hash = true;
   }
   // 需要生成几个html文件，就配置几个HtmlWebpackPlugin对象
-  module.exports.plugins.push(new HtmlWebpackPlugin(conf));
+  webpackConfig.plugins.push(new HtmlWebpackPlugin(conf));
 }
 
 module.exports = webpackConfig
