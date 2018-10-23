@@ -1,11 +1,29 @@
 <template>
   <div id="app">
-    <div class="home">home</div>
+ <!--    <demo-a></demo-a>
+    <div class="home">home</div> -->
+    <router-view></router-view>
   </div>
 </template>
 <script>
+import demoA  from 'views/home/components/demoA.vue';
+
 export default {
-  name: 'App'
+  data() {
+    return {
+    }
+  },
+  props: {},
+  components: {
+    demoA
+  },
+  created() {
+    
+  },
+  methods: {
+    
+  }
+
 }
 
 </script>
